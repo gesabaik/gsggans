@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mahasiswa - Informatika 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Navigasi Simpel */
+        .nav-simple {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-simple a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-simple a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Container Tabel */
+        .content-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        /* Styling Tabel Utama */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #aaa;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .data-table th {
+            background-color: #f9f9f9;
+        }
+
+        .mhs-photo {
+            width: 80px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* Styling Tabel Kuis (Bawah) */
+        .quiz-table {
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .quiz-table td {
+            border: 1px solid #333;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .center-cell {
+            background-color: #fff;
+            font-size: 1.2rem;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav-simple">
+        <a href="index.html">Home</a>
+        <a href="Profile.html">Profile</a>
+        <a href="Contact.html">Contact</a>
+        <a href="mahasiswa.html" style="color: var(--accent-color); font-weight: 700;">Mahasiswa</a>
+    </nav>
+
+    <div class="content-card">
+        <h2>Data Mahasiswa</h2>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th rowspan="2">No</th>
+                    <th rowspan="2">Nama</th>
+                    <th rowspan="2">Foto</th>
+                    <th colspan="3">Nilai</th>
+                </tr>
+                <tr>
+                    <th>UTS</th>
+                    <th>UAS</th>
+                    <th>Tugas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Gesa Santiko Santiko</td>
+                    <td><img src="asets/images/profil.jpeg" alt="Gesa" class="mhs-photo"></td>
+                    <td>95</td>
+                    <td>95</td>
+                    <td>95</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jefri Nichol</td>
+                    <td><img src="asets/images/jepri.jpg" alt="Jefri" class="mhs-photo"></td>
+                    <td>80</td>
+                    <td>85</td>
+                    <td>95</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Iqbal Ramadhan</td>
+                    <td><img src="asets/images/iqbal.jpg" alt="Iqbal" class="mhs-photo"></td>
+                    <td>85</td>
+                    <td>85</td>
+                    <td>95</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <table class="quiz-table">
+            <tr>
+                <td>1,1</td>
+                <td>1,2</td>
+                <td>1,3</td>
+                <td>1,4</td>
+            </tr>
+            <tr>
+                <td>2,1</td>
+                <td colspan="2" rowspan="2" class="center-cell">?</td>
+                <td>2,4</td>
+            </tr>
+            <tr>
+                <td>3,1</td>
+                <td>3,4</td>
+            </tr>
+            <tr>
+                <td>4,1</td>
+                <td>4,2</td>
+                <td>4,3</td>
+                <td>4,4</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>
