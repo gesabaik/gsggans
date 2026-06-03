@@ -149,10 +149,10 @@
     <nav>
         <div class="logo">INFORMATIKA 2026</div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="Profile.html">Profile</a></li>
-            <li><a href="Contact.html">Contact</a></li>
-            <li><a href="Mahasiswa.html">Mahasiswa</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="Profile.php">Profile</a></li>
+            <li><a href="Contact.php">Contact</a></li>
+            <li><a href="Mahasiswa.php">Mahasiswa</a></li>
         </ul>
     </nav>
     <div class="container">

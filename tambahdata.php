@@ -9,7 +9,7 @@
 
 <body>
     <h2>Tambah Data Mahasiswa</h2>
-    <form action="mahasiswa.html" method="post"></form>
+    <form action="mahasiswa.php" method="post"></form>
     </table>
     <form>
         <button>Tambah Data</button>

@@ -112,15 +112,15 @@
 <body>
 
     <nav class="nav-simple">
-        <a href="index.html">Home</a>
-        <a href="Profile.html">Profile</a>
-        <a href="Contact.html">Contact</a>
-        <a href="mahasiswa.html" style="color: var(--accent-color); font-weight: 700;">Mahasiswa</a>
+        <a href="index.php">Home</a>
+        <a href="Profile.php">Profile</a>
+        <a href="Contact.php">Contact</a>
+        <a href="mahasiswa.php" style="color: var(--accent-color); font-weight: 700;">Mahasiswa</a>
     </nav>
 
     <div class="content-card">
         <h2>Data Mahasiswa</h2>
-        <a href="tambahdata.html"></a>
+        <a href="tambahdata.php"></a>
         <button>Tambah Data</button>
         <table class="data-table">
             <thead>
