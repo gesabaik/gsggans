@@ -12,7 +12,7 @@ $mahasiswa = tampildata("SELECT * FROM mahasiswa");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GESA GANTENG | Data Mahasiswa</title>
+    <title>gesa | Data Mahasiswa</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -246,7 +246,7 @@ $mahasiswa = tampildata("SELECT * FROM mahasiswa");
     <div class="container">
 
         <header class="site-header">
-            <h1 class="site-title">GESA GANTENG</h1>
+            <h1 class="site-title">gesa</h1>
             <nav class="site-nav">
                 <a href="index.php">Home</a>
                 <a href="profile.php">Profile</a>
@@ -274,7 +274,7 @@ $mahasiswa = tampildata("SELECT * FROM mahasiswa");
                                 <th>NIM</th>
                                 <th>Jurusan</th>
                                 <th>Email</th>
-                                <th>no_HP</th>
+                                <th>No.HP</th>
                                 <th style="text-align: center;">Foto</th>
                                 <th style="width: 160px;">Aksi</th>
                             </tr>
@@ -297,17 +297,11 @@ $mahasiswa = tampildata("SELECT * FROM mahasiswa");
                                         </td>
                                         <td><?= $mhs["jurusan"]; ?></td>
                                         <td><?= $mhs["email"]; ?></td>
-                                        <td><?= $mhs["no_Hp"]; ?></td>
-                                        <td align="center">
-                                            <img src="assets/images/<?= $mhs["foto"]; ?>" alt="foto" width="45px" height="45px"
-                                                style="border-radius: 50%; object-fit: cover; border: 2px solid #e2e8f0;">
-                                        </td>
+                                        <td><?= $mhs["no_hp"]; ?></td>
                                         <td>
                                             <a href="editdata.php?id=<?= $mhs["id"]; ?>"><button
                                                     class="btn-edit">Edit</button></a>
-
-
-                                            <a href="hapusdata.php?id=<?= $mhs["id"]; ?>"
+                                            <a href="deletedata.php?id=<?= $mhs["id"]; ?>"
                                                 onclick="return confirm('Yakin ingin menghapus data ini?');"><button
                                                     class="btn-delete">Hapus</button></a>
                                         </td>

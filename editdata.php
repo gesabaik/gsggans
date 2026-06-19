@@ -2,30 +2,26 @@
 
 require "fungsi.php";
 
+// Ambil ID dari URL (didapat dari klik tombol edit di mahasiswa.php)
+$id = $_GET["id"];
+
+// Query data mahasiswa spesifik berdasarkan ID untuk ditampilkan di form
+// Menggunakan indeks [0] karena tampildata mengembalikan array multidimensi
+$mhs = tampildata("SELECT * FROM mahasiswa WHERE id = $id")[0];
+
+// Cek apakah tombol submit sudah ditekan
 if (isset($_POST["submit"])) {
-    $nama = $_POST["nama"];
-    $nim = $_POST["nim"];
-    $jurusan = $_POST["jurusan"];
-    $email = $_POST["email"];
-    $nohp = $_POST["nohp"];
 
-
-    // FIX: Mengubah $koneksi menjadi $conn sesuai dengan yang ada di fungsi.php
-    $query = "INSERT INTO mahasiswa 
-                (nama, nim, jurusan, email, no_hp, foto) VALUES
-                ('$nama', '$nim', '$jurusan', '$email', '$nohp', '$foto')";
-
-    mysqli_query($conn, $query);
-
-    // Alert notifikasi dan otomatis redirect kembali ke halaman utama jika sukses
-    if (mysqli_affected_rows($conn) > 0) {
+    // Panggil fungsi ubah, jika berhasil (nilai > 0) atau tidak ada perubahan (nilai == 0)
+    // Di sini kita cek >= 0 karena kalau user tidak mengubah apa-apa tapi klik simpan, nilainya 0 (bukan error)
+    if (ubah($_POST) >= 0) {
         echo "<script>
-                alert('Data berhasil ditambahkan!');
+                alert('Data berhasil diubah!');
                 document.location.href = 'mahasiswa.php';
               </script>";
     } else {
         echo "<script>
-                alert('Data gagal ditambahkan!');
+                alert('Data gagal diubah!');
               </script>";
     }
 }
@@ -38,7 +34,7 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data Mahasiswa</title>
+    <title>Ubah Data Mahasiswa</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
@@ -141,12 +137,12 @@ if (isset($_POST["submit"])) {
         }
 
         button[type="submit"] {
-            background-color: #1a1a1a;
+            background-color: #0f172a;
             color: #ffffff;
         }
 
         button[type="submit"]:hover {
-            background-color: #333333;
+            background-color: #1e293b;
         }
 
         .btn-kembali {
@@ -171,61 +167,55 @@ if (isset($_POST["submit"])) {
 <body>
 
     <div class="form-container">
-        <h2>Tambah Data</h2>
-        <p class="subtitle">Silakan isi formulir di bawah ini dengan lengkap</p>
+        <h2>Ubah Data Mahasiswa</h2>
+        <p class="subtitle">Perbarui data pada formulir di bawah ini</p>
 
         <form action="" method="post">
+            <input type="hidden" name="id" value="<?= $mhs["id"]; ?>">
+
             <table>
                 <tr>
                     <td class="col-label"><label for="nama">Nama</label></td>
                     <td class="col-titikdua">:</td>
-                    <td><input type="text" id="nama" name="nama" required autocomplete="off" placeholder="Nama Lengkap">
-                    </td>
+                    <td><input type="text" id="nama" name="nama" required autocomplete="off"
+                            value="<?= $mhs["nama"]; ?>"></td>
                 </tr>
                 <tr>
                     <td class="col-label"><label for="nim">NIM</label></td>
                     <td class="col-titikdua">:</td>
                     <td><input type="text" id="nim" name="nim" required autocomplete="off"
-                            placeholder="Nomor Induk Mahasiswa"></td>
+                            value="<?= $mhs["nim"]; ?>" /></td>
+                    </td>
                 </tr>
                 <tr>
                     <td class="col-label"><label for="jurusan">Jurusan</label></td>
                     <td class="col-titikdua">:</td>
                     <td><input type="text" id="jurusan" name="jurusan" required autocomplete="off"
-                            placeholder="Program Studi"></td>
+                            value="<?= $mhs["jurusan"]; ?>"></td>
                 </tr>
                 <tr>
                     <td class="col-label"><label for="email">Email</label></td>
                     <td class="col-titikdua">:</td>
                     <td><input type="text" id="email" name="email" required autocomplete="off"
-                            placeholder="alamat@email.com"></td>
+                            value="<?= $mhs["email"]; ?>"></td>
                 </tr>
                 <tr>
                     <td class="col-label"><label for="nohp">No.Hp</label></td>
                     <td class="col-titikdua">:</td>
                     <td><input type="text" id="nohp" name="nohp" required autocomplete="off"
-                            placeholder="Contoh: 08123xxx"></td>
+                            value="<?= $mhs["no_Hp"]; ?>"></td>
                 </tr>
-
-            </table>
-
-            <div class="button-group">
-                <a href="mahasiswa.php" class="btn-kembali">Kembali</a>
-                <button type="submit" name="submit">Simpan Data</button>
-            </div>
-        </form>
-        <form action="" method="post" enctype="multipart/form-data">
-            <table>
                 <tr>
                     <td class="col-label"><label for="foto">Foto</label></td>
                     <td class="col-titikdua">:</td>
-                    <td><input type="file" id="foto" name="foto"></td>
+                    <td><input type="text" id="foto" name="foto" required autocomplete="off"
+                            value="<?= $mhs["foto"]; ?>"></td>
                 </tr>
             </table>
 
             <div class="button-group">
                 <a href="mahasiswa.php" class="btn-kembali">Batal</a>
-                <button type="submit" name="submit">Simpan Data</button>
+                <button type="submit" name="submit">Simpan Perubahan</button>
             </div>
         </form>
     </div>
