@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Jika tidak ada session login, tendang balik ke halaman login
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
+
+require 'fungsi.php';
+?>
 <!DOCTYPE html>
 <html lang="id">
 

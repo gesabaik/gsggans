@@ -117,12 +117,44 @@ function ubah($data)
                 nim = '$nim',
                 jurusan = '$jurusan',
                 email = '$email',
-                no_hp = '$nohp',
+                no_hp = '$nohp'
               WHERE id = $id";
 
     mysqli_query($conn, $query);
 
     // Mengembalikan angka status perubahan (1 jika ada perubahan, 0 jika tidak ada, -1 jika error)
     return mysqli_affected_rows($conn);
+}
+// FUNGSI REGISTRASI
+function registrasi($data)
+{
+    global $conn;
+
+    $username = strtolower(stripslashes($data["username"] ?? ''));
+    $password = mysqli_real_escape_string($conn, $data["password"] ?? '');
+    $password_konfirmasi = mysqli_real_escape_string($conn, $data["password_konfirmasi"] ?? '');
+
+    // Cek apakah username sudah ada di database
+    $result = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username'");
+    if (mysqli_fetch_assoc($result)) {
+        echo "<script>alert('Username sudah terdaftar!');</script>";
+        return false;
+    }
+
+    // Cek konfirmasi password
+    if ($password !== $password_konfirmasi) {
+        echo "<script>alert('Konfirmasi password tidak sesuai!');</script>";
+        return false;
+    }
+
+    // Enkripsi password sebelum disimpan ke database
+    $password_aman = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insert user baru ke database (Pastikan Anda sudah membuat tabel 'user')
+    $query = "INSERT INTO user (username, password) VALUES ('$username', '$password_aman')";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+
 }
 ?>

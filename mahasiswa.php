@@ -297,7 +297,7 @@ $mahasiswa = tampildata("SELECT * FROM mahasiswa");
                                         </td>
                                         <td><?= $mhs["jurusan"]; ?></td>
                                         <td><?= $mhs["email"]; ?></td>
-                                        <td><?= $mhs["no_hp"]; ?></td>
+                                        <td><?= $mhs["no_Hp"]; ?></td>
                                         <td>
                                             <a href="editdata.php?id=<?= $mhs["id"]; ?>"><button
                                                     class="btn-edit">Edit</button></a>
