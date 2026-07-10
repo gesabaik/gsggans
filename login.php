@@ -1,6 +1,14 @@
 <?php
-session_start(); // 1. Jalankan session di paling atas
+// 1. WAJIB jalankan session_start() di baris paling pertama sebelum kode apa pun
+session_start();
+
 require 'fungsi.php';
+
+// Cek apakah user sudah login sebelumnya. Kalau sudah, langsung lempar ke index.php
+if (isset($_SESSION["login"])) {
+    header("Location: index.php");
+    exit;
+}
 
 if (isset($_POST["login"])) {
     $username = $_POST["username"];
@@ -8,17 +16,23 @@ if (isset($_POST["login"])) {
 
     $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
 
+    // Cek apakah username ditemukan
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
 
+        // Cek apakah password yang diketik cocok dengan hash di database
         if (password_verify($password, $row["password"])) {
 
-            $_SESSION["login"] = true; // 2. Set session tanda sukses login
+            // 2. Buat SESSION login di sini jika password benar
+            $_SESSION["login"] = true;
+            $_SESSION["username"] = $row["username"]; // Opsional: buat nampilin nama user di index nanti
 
+            // Alihkan ke halaman utama
             header("Location: index.php");
             exit;
         }
     }
+    // Jika salah, set variabel error untuk memunculkan pesan peringatan di HTML
     $error = true;
 }
 ?>
@@ -85,7 +99,7 @@ if (isset($_POST["login"])) {
         }
 
         .error-msg {
-        color: red;
+            color: red;
             font-style: italic;
             margin-bottom: 10px;
             text-align: center;
@@ -109,7 +123,7 @@ if (isset($_POST["login"])) {
         <h1>Login</h1>
 
         <?php if (isset($error)): ?>
-                <p class="error-msg">Username / Password salah!</p>
+            <p class="error-msg">Username / Password salah!</p>
         <?php endif; ?>
 
         <form action="" method="post">

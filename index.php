@@ -156,7 +156,11 @@ require 'fungsi.php';
 </head>
 
 <body>
-
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>Daftar Mahasiswa</h2>
+        <a href="logout.php" onclick="return confirm('Yakin ingin logout?');"
+            style="padding: 8px 15px; background-color: #dc3545; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">Logout</a>
+    </div>
     <nav>
         <div class="logo">INFORMATIKA 2026</div>
         <ul class="nav-links">
